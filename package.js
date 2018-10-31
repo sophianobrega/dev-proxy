@@ -1,6 +1,6 @@
 Package.describe({
     name:          'lucasissa:dev-proxy',
-    version:       '0.0.6',
+    version:       '0.0.7',
     summary:       'Proxy your REST api calls to a web server running on the same machine, but another port.',
     git:           'https://github.com/pbastowski/dev-proxy',
     documentation: 'README.md'
