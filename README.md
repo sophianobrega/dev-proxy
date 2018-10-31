@@ -36,7 +36,7 @@ if (process.env.NODE_ENV === "development" && typeof DevProxy !== 'undefined') {
 
 ## Installation
 
-    meteor install pbastowski:dev-proxy
+    meteor install lucasissa:dev-proxy
 
 ## Usage
 
