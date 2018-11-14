@@ -7,7 +7,6 @@
 
     var httpProxy = Npm.require('http-proxy');
     var url = Npm.require('url');
-    var URLSearchParams = url.URLSearchParams;
 
     DevProxy = {
         addProxy: addProxy
@@ -49,10 +48,12 @@
 
                         if (req.query) {
                             // Meteor 1.5 has no req.query. Meteor 1.8 has req.query.
-                            var queryString = new URLSearchParams(req.query).toString();
-                            if (queryString) {
-                                req.url += '?' + queryString;
-                            }
+                          var urlParsed = url.parse(req.originalUrl);
+                          if (urlParsed.search) {
+                            // Meteor 1.8 has no queryString in the URL.
+                            // So, in this case, we need to add it.
+                            req.url += urlParsed.search;
+                          }
                         }
 
                         console.log('proxying ' + req.url, ' to: ', target);
@@ -60,7 +61,7 @@
                         apiProxy.web(req, res);
                     }
                     else {
-                        next()
+                        next();
                     }
                 });
         }
